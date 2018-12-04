@@ -12,7 +12,7 @@ const ProdukType = new GraphQLObjectType({
     komentars: {
       type: new GraphQLList(KomentarType),
       resolve(parentValue) {
-        return Produk.findKomentars(parentValue.id);
+        return Produk.findKomentar(parentValue.id);
       }
     }
   })

@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 
-class SongList extends Component {
-  //   state = {}; kalo pake state error, KENAPA?!
-
+class ProdukList extends Component {
   renderProduk() {
     return this.props.data.produks.map(produk => {
-      return <li>{produk.title}</li>;
+      return (
+        <li key={produk.id} className="collection-item">
+          {produk.title}
+        </li>
+      );
     });
   }
 
@@ -17,16 +19,17 @@ class SongList extends Component {
       return <div>Loading...</div>;
     }
 
-    return <div>{this.renderProduk()}</div>;
+    return <ul className="collection">{this.renderProduk()}</ul>;
   }
 }
 
 const query = gql`
   {
     produks {
+      id
       title
     }
   }
 `;
 
-export default graphql(query)(SongList); //format redux
+export default graphql(query)(ProdukList); //format redux
